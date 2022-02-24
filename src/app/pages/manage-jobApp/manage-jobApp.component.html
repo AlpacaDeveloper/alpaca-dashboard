@@ -1,0 +1,23 @@
+<nz-card>
+  <h3>Job Application</h3>
+  <nz-switch [(ngModel)]="switchValue"(ngModelChange)="closeJobApplication()"></nz-switch>
+</nz-card>
+<br />
+<nz-card>
+  <h3>Job Postition</h3>
+  <div class="position-list"*ngFor="let pos of positionList">
+    <p>{{ pos.value }}</p>
+    <nz-switch [(ngModel)]="pos.isopen" (ngModelChange)="onChange($event, pos)"></nz-switch>
+    <button class="button-delete" (click)="deletePosition(pos.id)" nz-button nzType="default" nzSize="small" nzDanger>Delete</button>
+  </div>
+</nz-card>
+
+<br />
+<div class="addPosition">
+  <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+    <input type="text" nz-input placeholder="position" [(ngModel)]="positionInput" />
+  </nz-input-group>
+  <ng-template #suffixButton>
+    <button (click)="addPosition()" nz-button nzType="primary" nzSize="large" nzSearch>Add</button>
+  </ng-template>
+</div>

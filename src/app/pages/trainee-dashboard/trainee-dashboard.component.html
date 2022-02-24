@@ -1,0 +1,8 @@
+<nz-switch [ngModel]="viewSwitch" nzCheckedChildren="single-view" nzUnCheckedChildren="table-view" [nzControl]="true" (click)="clickSwitch()"></nz-switch>
+
+<div *ngIf="viewSwitch; else elseBlock">
+    <app-trainee-single [data]="singleItem" [pageIndex]="pageIndex" [total]="total"></app-trainee-single>
+</div>
+<ng-template #elseBlock>
+    <app-trainee-job-app (data)="getSingleItem($event)"></app-trainee-job-app> 
+</ng-template>

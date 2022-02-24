@@ -1,0 +1,38 @@
+<nz-table #basicTable [nzData]="listOfData" [nzScroll]="{ x: '1200px', y: '500px' }">
+    <thead>
+      <tr>
+        <th nzWidth="100px">ขื่อ</th>
+        <th nzWidth="150px">นามสกุล</th>
+        <th nzWidth="70px">อายุ</th>
+        <th nzWidth="150px">มหาวิทยาลัย</th>
+        <th nzWidth="150px">คณะ</th>
+        <th nzWidth="150px">โทรศัพท์</th>
+        <th nzWidth="180px">อีเมลล์</th>
+        <th nzWidth="150px">ฝ่าย</th>
+        <th nzWidth="250px">แนะนําตัว</th>
+        <th nzWidth="150px">ได้รับข่าวสารจาก</th>
+        <th nzWidth="150px">resume</th>
+        <th nzWidth="150px">port</th>
+        <th nzWidth="180px">fb</th>
+        <th nzWidth="150px">ig</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data" (click)="singleItem(data)">
+        <td>{{ data.name }}</td>
+        <td>{{ data.surname }}</td>
+        <td>{{ data.age }}</td>
+        <td>{{ data.uni }}</td>
+        <td>{{ data.fac }}</td>
+        <td>{{ data.tel }}</td>
+        <td>{{ data.email }}</td>
+        <td>{{ data.pos }}</td>
+        <td>{{ data.about }}</td>
+        <td>{{ data.source }}</td>
+        <td><a href="{{data.resume}}" target="_blank">{{data.resume}}</a></td>
+        <td><a href="{{data.port}}" target="_blank">{{ data.port }}</a></td>
+        <td>{{ data.fb }}</td>
+        <td>{{ data.ig }}</td>
+      </tr>
+    </tbody>
+  </nz-table>

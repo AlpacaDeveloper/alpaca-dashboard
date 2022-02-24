@@ -1,0 +1,81 @@
+<nz-layout class="app-layout">
+  <nz-sider
+    class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+  >
+    <div class="sidebar-logo">
+      <a href="https://alpacathailand.com/" target="_blank">
+        <img src="assets/img/logo.png" alt="logo" />
+        <h1>Alpaca Dashboard</h1>
+      </a>
+    </div>
+    <ul
+      nz-menu
+      nzTheme="dark"
+      nzMode="inline"
+      [nzInlineCollapsed]="isCollapsed"
+    >
+      <li nz-submenu nzOpen nzTitle="Management" nzIcon="container">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/dashboard"
+              ><i nz-icon nzType="audit" nzTheme="outline"></i>
+              ข้อมูลสมัครงาน</a
+            >
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/traineedashboard"
+              ><i nz-icon nzType="audit" nzTheme="outline"></i> ข้อมูลฝึกงาน</a
+            >
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/managejobapp"
+              ><i nz-icon nzType="setting" nzTheme="outline"></i>
+              จัดการแบบฟอร์ม</a
+            >
+          </li>
+        </ul>
+      </li>
+      <ul
+        nz-menu
+        nzMode="inline"
+        nzTheme="dark"
+        [nzInlineCollapsed]="isCollapsed"
+      >
+        <li
+          nz-menu-item
+          nz-tooltip
+          nzTooltipPlacement="right"
+          [nzTooltipTitle]="isCollapsed ? 'Log out' : ''"
+          (click)="logOut()"
+        >
+          <i nz-icon nzType="logout"></i>
+          <span>Log Out</span>
+        </li>
+      </ul>
+    </ul>
+  </nz-sider>
+
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <i
+            class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          ></i>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
