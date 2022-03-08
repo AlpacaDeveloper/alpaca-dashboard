@@ -29,6 +29,7 @@ import { SingleViewComponent } from './pages/dashboard/single-view/single-view.c
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 import { TraineeJobAppComponent } from './pages/trainee-dashboard/trainee-job-app/trainee-job-app.component';
 import { TraineeDashboardComponent } from './pages/trainee-dashboard/trainee-dashboard.component'; 
 import { TraineeSingleComponent} from './pages/trainee-dashboard/trainee-single/trainee-single.component'
@@ -70,7 +71,8 @@ registerLocaleData(th);
     NzSwitchModule,
     NzDescriptionsModule,
     NzPaginationModule,
-    NzToolTipModule
+    NzToolTipModule,
+    NzGridModule 
 
 
     

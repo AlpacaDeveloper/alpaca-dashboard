@@ -28,18 +28,62 @@ export class DashboardService {
     return this.http.post(environment.APIURL + '/updatePosition.php', body);
   }
 
-  closeJobApplication (body: any) {
-    return this.http.post(environment.APIURL + '/closeJobApplication.php', body)
+  closeJobApplication(body: any) {
+    return this.http.post(
+      environment.APIURL + '/closeJobApplication.php',
+      body
+    );
   }
 
-  getManageJob(){
-    return this.http.get(environment.APIURL+ '/getManageJob.php')
+  closeJustJobApplication(body: any) {
+    return this.http.post(
+      environment.APIURL + '/closeJustJobApplication.php',
+      body
+    );
   }
 
-  getTrainee(){
-    return this.http.get(environment.APIURL+ '/getTrainee.php')
+  closeTraineeJobApplication(body: any) {
+    return this.http.post(
+      environment.APIURL + '/closeTraineeJobApplication.php',
+      body
+    );
   }
 
+  getManageJob() {
+    return this.http.get(environment.APIURL + '/getManageJob.php');
+  }
 
+  getTrainee() {
+    return this.http.get(environment.APIURL + '/getTrainee.php');
+  }
 
+  getManageTrainee() {
+    return this.http.get(environment.APIURL + '/getManageTrainee.php');
+  }
+
+  getTraineePosition() {
+    return this.http.get(environment.APIURL + '/getTraineePosition.php');
+  }
+
+  insertTraineePosition(body: string) {
+    // console.log(body);
+    return this.http.post(
+      environment.APIURL + '/insertTraineePosition.php',
+      body
+    );
+  }
+
+  deleteTraineePosition(id: string) {
+    return this.http.post(
+      environment.APIURL + '/deleteTraineePosition.php',
+      id
+    );
+  }
+
+  updateTraineePosition(body: any) {
+    return this.http.post(
+      environment.APIURL + '/updateTraineePosition.php',
+      body
+    );
+  }
 }

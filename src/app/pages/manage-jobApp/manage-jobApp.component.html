@@ -1,23 +1,121 @@
 <nz-card>
-  <h3>Job Application</h3>
-  <nz-switch [(ngModel)]="switchValue"(ngModelChange)="closeJobApplication()"></nz-switch>
+  <div nz-row>
+    <div nz-col nzSpan="6">
+      <h3>All Job Form</h3>
+      <nz-switch
+        [(ngModel)]="switchValue"
+        (ngModelChange)="closeJobApplication()"
+      ></nz-switch>
+    </div>
+
+    <div nz-col nzSpan="6">
+      <h3>Job Application</h3>
+      <nz-switch
+        [(ngModel)]="justJobSwitchValue"
+        (ngModelChange)="closeJustJobApplication()"
+      ></nz-switch>
+    </div>
+
+    <div nz-col nzSpan="6">
+      <h3>Trainee Job Application</h3>
+      <nz-switch
+        [(ngModel)]="traineeSwitchValue"
+        (ngModelChange)="closeTraineeJobApplication()"
+      ></nz-switch>
+    </div>
+  </div>
 </nz-card>
 <br />
-<nz-card>
-  <h3>Job Postition</h3>
-  <div class="position-list"*ngFor="let pos of positionList">
-    <p>{{ pos.value }}</p>
-    <nz-switch [(ngModel)]="pos.isopen" (ngModelChange)="onChange($event, pos)"></nz-switch>
-    <button class="button-delete" (click)="deletePosition(pos.id)" nz-button nzType="default" nzSize="small" nzDanger>Delete</button>
+<nz-card class="manage-position">
+  <div nz-row>
+    <div nz-col nzSpan="12">
+      <h3>Job Postition</h3>
+      <div class="position-list" *ngFor="let pos of positionList">
+        <p>{{ pos.value }}</p>
+        <nz-switch
+          [(ngModel)]="pos.isopen"
+          (ngModelChange)="onChange($event, pos)"
+        ></nz-switch>
+        <button
+          class="button-delete"
+          (click)="deletePosition(pos.id)"
+          nz-button
+          nzType="default"
+          nzSize="small"
+          nzDanger
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+    
+    <div nz-col nzSpan="12">
+      <h3>Trainee Position</h3>
+      <div class="trainee-position-list" *ngFor="let pos of traineePositionList">
+        <p>{{ pos.value }}</p>
+        <nz-switch
+          [(ngModel)]="pos.isopen"
+          (ngModelChange)="onTraineeChange($event, pos)"
+        ></nz-switch>
+        <button
+          class="button-delete"
+          (click)="deleteTraineePosition(pos.id)"
+          nz-button
+          nzType="default"
+          nzSize="small"
+          nzDanger
+        >
+          Delete
+        </button>
+      </div>
+    </div>
   </div>
 </nz-card>
 
 <br />
-<div class="addPosition">
-  <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-    <input type="text" nz-input placeholder="position" [(ngModel)]="positionInput" />
-  </nz-input-group>
-  <ng-template #suffixButton>
-    <button (click)="addPosition()" nz-button nzType="primary" nzSize="large" nzSearch>Add</button>
-  </ng-template>
+
+<div nz-row>
+  <div nz-col nzSpan="12" class="addPosition">
+    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+      <input
+        type="text"
+        nz-input
+        placeholder="position"
+        [(ngModel)]="positionInput"
+      />
+    </nz-input-group>
+    <ng-template #suffixButton>
+      <button
+        (click)="addPosition()"
+        nz-button
+        nzType="primary"
+        nzSize="large"
+        nzSearch
+      >
+        Add
+      </button>
+    </ng-template>
+  </div>
+  <div nz-col nzSpan="12" class="addTraineePosition">
+    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="traineebutton">
+      <input
+        type="text"
+        nz-input
+        placeholder="trainee position"
+        [(ngModel)]="traineePositionInput"
+      />
+    </nz-input-group>
+    <ng-template #traineebutton>
+      <button
+        (click)="addTraineePosition()"
+        nz-button
+        nzType="primary"
+        nzSize="large"
+        nzSearch
+      >
+        Add
+      </button>
+    </ng-template>
+  </div>
 </div>
+
