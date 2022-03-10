@@ -53,6 +53,10 @@ export class DashboardService {
     return this.http.get(environment.APIURL + '/getManageJob.php');
   }
 
+  getManageJustJob() {
+    return this.http.get(environment.APIURL + '/getManageJustJob.php');
+  }
+
   getTrainee() {
     return this.http.get(environment.APIURL + '/getTrainee.php');
   }

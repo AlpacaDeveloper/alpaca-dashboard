@@ -30,7 +30,8 @@ export class ManageJobAppComponent implements OnInit {
     this.getPositions(),
     this.getManageJob(),
     this.getTraineePosition(),
-    this.getManageTrainee()
+    this.getManageTrainee(),
+    this.getManageJustJob()
   }
 
 
@@ -40,6 +41,18 @@ export class ManageJobAppComponent implements OnInit {
           this.switchValue = false;
         } else {
           this.switchValue = true;
+        }
+        console.log(x)
+    
+    })
+  }
+
+  getManageJustJob(){
+    this.service.getManageJustJob().subscribe((x: any)=>{
+        if (x == '0') {
+          this.justJobSwitchValue = false;
+        } else {
+          this.justJobSwitchValue = true;
         }
         console.log(x)
     
