@@ -5,8 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { th_TH } from 'ng-zorro-antd/i18n';
-import { registerLocaleData } from '@angular/common';
-import th from '@angular/common/locales/th';
+import { DatePipe, registerLocaleData } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,14 +30,26 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { TraineeJobAppComponent } from './pages/trainee-dashboard/trainee-job-app/trainee-job-app.component';
-import { TraineeDashboardComponent } from './pages/trainee-dashboard/trainee-dashboard.component'; 
-import { TraineeSingleComponent} from './pages/trainee-dashboard/trainee-single/trainee-single.component'
-
-
-
-
-registerLocaleData(th);
-
+import { TraineeDashboardComponent } from './pages/trainee-dashboard/trainee-dashboard.component';
+import { TraineeSingleComponent } from './pages/trainee-dashboard/trainee-single/trainee-single.component';
+import { MemoComponent } from './pages/memo/memo.component';
+import { NgxPrintModule } from 'ngx-print';
+import { FormApplicationComponent } from './pages/form-application/form-application.component';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { LOCALE_ID } from '@angular/core';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { ProfileTableComponent } from './pages/profile/profile-table/profile-table.component';
+import { ProfileSingleComponent } from './pages/profile/profile-single/profile-single.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { PersonalProfileComponent } from './pages/personal-profile/personal-profile.component';
+import { SuperadminComponent } from './pages/superadmin/superadmin.component';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { QuotationComponent } from './pages/quotation/quotation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +61,16 @@ registerLocaleData(th);
     SingleViewComponent,
     TraineeJobAppComponent,
     TraineeDashboardComponent,
-    TraineeSingleComponent
+    TraineeSingleComponent,
+    MemoComponent,
+    FormApplicationComponent,
+    ProfileComponent,
+    ProfileTableComponent,
+    ProfileSingleComponent,
+    RegisterComponent,
+    PersonalProfileComponent,
+    SuperadminComponent,
+    QuotationComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,12 +92,20 @@ registerLocaleData(th);
     NzDescriptionsModule,
     NzPaginationModule,
     NzToolTipModule,
-    NzGridModule 
-
-
-    
+    NzGridModule,
+    NgxPrintModule,
+    NzSelectModule,
+    NzDatePickerModule,
+    NzAlertModule,
+    NzMessageModule,
+    NzDropDownModule,
+    NzUploadModule,
+    NzPopconfirmModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: th_TH }],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: NZ_I18N, useValue: th_TH },
+    DatePipe,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

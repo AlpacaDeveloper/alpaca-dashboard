@@ -118,4 +118,98 @@
     </ng-template>
   </div>
 </div>
+<br>
+
+
+
+<nz-card class="manage-position">
+  
+  <div nz-row>
+    <div nz-col nzSpan="12">
+      <h3>Department</h3>
+      <div style="display: flex;"class="department-list" *ngFor="let pos of departmentList">
+        <p>{{ pos.value }}</p>
+        <button
+          class="button-delete"
+          (click)="deleteDepartment(pos.id)"
+          nz-button
+          nzType="default"
+          nzSize="small"
+          nzDanger
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <h3>User Position</h3>
+      <div style="display: flex;"class="user-position-list" *ngFor="let pos of userPositionList">
+        <p>{{ pos.value }}</p>
+        <button
+          class="button-delete"
+          (click)="deleteUserPosition(pos.id)"
+          nz-button
+          nzType="default"
+          nzSize="small"
+          nzDanger
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+    
+
+  </div>
+</nz-card>
+
+<br />
+
+<div nz-row>
+  <div nz-col nzSpan="12" class="addDepartment">
+    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="departmentButton">
+      <input
+        type="text"
+        nz-input
+        placeholder="department"
+        [(ngModel)]="departmentInput"
+      />
+    </nz-input-group>
+    <ng-template #departmentButton>
+      <button
+        (click)="addDepartment()"
+        nz-button
+        nzType="primary"
+        nzSize="large"
+        nzSearch
+      >
+        Add
+      </button>
+    </ng-template>
+  </div>
+  <div nz-col nzSpan="12" class="addUserPosition">
+    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="userButton">
+      <input
+        type="text"
+        nz-input
+        placeholder="position"
+        [(ngModel)]="userPositionInput"
+      />
+    </nz-input-group>
+    <ng-template #userButton>
+      <button
+        (click)="addUserPosition()"
+        nz-button
+        nzType="primary"
+        nzSize="large"
+        nzSearch
+      >
+        Add
+      </button>
+    </ng-template>
+  </div>
+  
+</div>
+
+
 

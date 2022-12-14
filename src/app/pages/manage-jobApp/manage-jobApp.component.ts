@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { DashboardService } from 'src/app/services/dashboard.service';
 
 interface Position {
@@ -13,6 +13,7 @@ interface Position {
   styleUrls: ['./manage-jobApp.component.scss'],
 })
 export class ManageJobAppComponent implements OnInit {
+
   checked = true;
   switchValue = false;
   traineeSwitchValue = false;
@@ -20,9 +21,12 @@ export class ManageJobAppComponent implements OnInit {
 
   positionList: Position[] = [];
   traineePositionList: Position[] = [];
-
+  userPositionList: Position[] = [];
+  departmentList: Position[] = [];
   positionInput: string = '';
   traineePositionInput : string = '';
+  userPositionInput: string = '';
+  departmentInput: string = '';
 
   constructor(private service: DashboardService) {}
 
@@ -31,7 +35,9 @@ export class ManageJobAppComponent implements OnInit {
     this.getManageJob(),
     this.getTraineePosition(),
     this.getManageTrainee(),
-    this.getManageJustJob()
+    this.getManageJustJob(),
+    this.getUserPosition(),
+    this.getDepartment()
   }
 
 
@@ -93,6 +99,24 @@ export class ManageJobAppComponent implements OnInit {
     });
   }
 
+  getUserPosition() {
+    this.service.getUserPosition().subscribe((x: any) => {
+
+        this.userPositionList = x;
+        console.log(x)
+        console.log(this.userPositionList)
+      });
+  }
+
+  getDepartment(){
+    this.service.getDepartment().subscribe((x: any) => {
+
+      this.departmentList = x;
+      console.log(x)
+      console.log(this.departmentList)
+    });
+  }
+
 
   addPosition() {
     this.service.insertPosition(this.positionInput).subscribe((x) => {
@@ -114,10 +138,32 @@ export class ManageJobAppComponent implements OnInit {
     });
   }
 
+  addUserPosition() {
+    console.log(this.userPositionInput)
+    this.service.insertUserPosition(this.userPositionInput).subscribe((x:any) => {
+      console.log(x)
+      if (x == true) {
+        this.getUserPosition();
+      } else {
+      }
+    });
+  }
+
+  addDepartment(){
+    console.log(this.departmentInput)
+    this.service.insertDepartment(this.departmentInput).subscribe((x:any) => {
+      console.log(x)
+      if (x == true) {
+        this.getDepartment();
+      } else {
+      }
+    });
+  }
+
   deletePosition(id: string){
     this.service.deletePosition(id).subscribe(x => {
       if ( x == true ) {
-        this.getPositions();
+        this.getDepartment();
       }
     })
   }
@@ -129,6 +175,23 @@ export class ManageJobAppComponent implements OnInit {
       }
     })
   }
+
+  deleteUserPosition(id: string){
+    this.service.deleteUserPosition(id).subscribe((x: any) => {
+      if ( x == true ) {
+        this.getUserPosition();
+      }
+    })
+  }
+
+  deleteDepartment(id: string){
+    this.service.deleteDepartment(id).subscribe((x: any) => {
+      if ( x == true ) {
+        this.getDepartment();
+      }
+    })
+  }
+  
 
   onChange = (x: any, pos: Position) => {
     pos.isopen = x

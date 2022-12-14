@@ -4,8 +4,20 @@
   class="login-form"
   (ngSubmit)="submitForm()"
 >
-<img class = 'login-logo'src="assets/img/logo.png" alt="logo">
- 
+  <img class="login-logo" src="assets/img/logo.png" alt="logo" />
+
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your Username!">
+      <nz-input-group nzPrefixIcon="lock">
+        <input
+          type="text"
+          nz-input
+          formControlName="username"
+          placeholder="username"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
   <nz-form-item>
     <nz-form-control nzErrorTip="Please input your Password!">
       <nz-input-group nzPrefixIcon="lock">
@@ -25,5 +37,4 @@
   >
     Log in
   </button>
-  
 </form>

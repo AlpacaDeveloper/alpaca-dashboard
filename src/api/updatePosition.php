@@ -8,7 +8,7 @@ $data = json_decode($postData);
 $id = $data->id;
 $value = $data->isopen; 
  
-$sql = "UPDATE `traineeposition` SET `isopen`= '$value' WHERE `id` = '$id'";
+$sql = "UPDATE `position` SET `isopen`= '$value' WHERE `id` = '$id'";
 
 $result = mysqli_query($connect, $sql);
 

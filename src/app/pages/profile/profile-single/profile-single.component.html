@@ -1,0 +1,16 @@
+<nz-pagination [nzPageIndex]="pageIndex" [nzTotal]="total" [nzPageSize]="1" nzSimple (nzPageIndexChange)="onIndexChange($event)"></nz-pagination>
+<img [src]="data!.url" style="width:300px; height: 300px; margin-bottom: 10px;">
+<nz-descriptions nzTitle="User Info" nzBordered>
+    <nz-descriptions-item nzTitle="คํานําหน้า" [nzSpan]="4" >{{ data!.title }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="ชื่อ" [nzSpan]="2" >{{ data!.name }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="นามสกุล"[nzSpan]="2">{{ data!.surname }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="รหัสพนักงาน" [nzSpan]="2" >{{ data!.account_id }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="เลขบัตรประชาชน" [nzSpan]="2" >{{ data!.personal_id }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="ฝ่าย" [nzSpan]="2">{{ data!.department }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="ตําแหน่ง" [nzSpan]="2">{{ data!.position }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="เบอร์โทรศัพท์" [nzSpan]="2">{{ data!.tel }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="วันที่เริ่มงาน" [nzSpan]="2">{{ data!.start_date }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="วันเกิด"[nzSpan]="4">{{ data!.birthday }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="ที่อยู่" [nzSpan]="6">{{ data!.address }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="โรคประจําตัว" [nzSpan]="2">{{ data!.medical }}</nz-descriptions-item>
+  </nz-descriptions>

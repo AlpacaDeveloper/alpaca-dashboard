@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
 
-      this.auth.login(this.validateForm.get('password')?.value);
+      this.auth.login(this.validateForm.value);
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
@@ -33,9 +33,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
+      username: [null, [Validators.required]],
       password: [null, [Validators.required]],
     });
-
-   
   }
 }

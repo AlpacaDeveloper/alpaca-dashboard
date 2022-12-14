@@ -1,0 +1,296 @@
+<button
+  nz-button
+  nzType="primary"
+  printSectionId="print"
+  [disabled]="printSwitch"
+  [useExistingCss]="true"
+  ngxPrint
+>
+  print
+</button>
+<button nz-button nzType="primary" (click)="submit()">บันทึกข้อมูล</button>
+<section id="print">
+  <div class="header">
+    <img src="../../../assets/img/alpacalogo1.png" alt="alpaca-logo" />
+    <!-- <img class="alpaca-logo" src="../../../assets/img/alpacalogo1.png" alt=""> -->
+    <h4 style="font-size: 16px;">บริษัท อัลปากา มีเดีย แอนด์ เทคโนโลยี โซลูชั่นส์ จํากัด</h4>
+    <h4 style="font-size: 16px;">ALPACA MEDIA AND TECHNOLOGY SOLUTIONS Co.,Ltd</h4>
+  </div>
+  <div class="title">
+    <div nz-row class="title-row1">
+      <div class="title1-top-left" nz-col nzSpan="17">
+        <h3 style="margin-bottom: 0">MEMORANDUM</h3>
+        <h3 style="margin-bottom: 0">DEPARTMENT</h3>
+      </div>
+      <div nz-col nzSpan="7">
+        <div nz-row>
+          <div class="title1-top-right-row1" nz-col nzSpan="24">
+            <div
+              class="editable-cell"
+              style="height: auto"
+              [hidden]="editId === dept.id"
+              (click)="startEdit(dept.id)"
+            >
+              <p class="set-topic">Dept/Div/Sec: {{ dept.value }}</p>
+            </div>
+            <nz-select
+              [hidden]="editId !== dept.id"
+              [(ngModel)]="dept.value"
+              (blur)="stopEdit()"
+              (ngModelChange)="onDeptChange($event)"
+            >
+              <nz-option nzValue="Media" nzLabel="Media"></nz-option>
+              <nz-option nzValue="Technology" nzLabel="Technology"></nz-option>
+              <nz-option nzValue="Production" nzLabel="Production"></nz-option>
+              <nz-option nzValue="Management" nzLabel="Management"></nz-option>
+            </nz-select>
+          </div>
+        </div>
+        <div nz-row>
+          <div class="title1-top-right-row2-col1" nz-col nzSpan="6">
+            <p class="set-topic">No.</p>
+          </div>
+          <div class="title1-top-right-row2-col2" nz-col nzSpan="18">
+            <div>
+              <p class="set-topic">{{ position.value }}{{ memoID }}</p>
+            </div>
+            <!-- <nz-select
+              [hidden]="editId !== position.id"
+              [(ngModel)]="position.value"
+              (blur)="stopEdit()"
+            >
+              <nz-option nzValue="MD" nzLabel="MD"></nz-option>
+              <nz-option nzValue="TE" nzLabel="TE"></nz-option>
+              <nz-option nzValue="PD" nzLabel="PD"></nz-option>
+              <nz-option nzValue="MN" nzLabel="MN"></nz-option>
+            </nz-select> -->
+          </div>
+        </div>
+        <div nz-row>
+          <div class="title1-top-right-row3-col1" nz-col nzSpan="6">
+            <p class="set-topic">Date:</p>
+          </div>
+          <div class="title1-top-right-row3-col2" nz-col nzSpan="18">
+            <p class="set-topic">
+              {{ this.today | date: "dd/MM/yyyy" }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div nz-row class="title-row2">
+      <div class="add-border-right" nz-col nzSpan="3">
+        <p class="set-topic">SUBJ. :</p>
+      </div>
+      <div nz-col nzSpan="21">
+        <div
+          class="editable-cell"
+          [hidden]="editId === subject.id"
+          (click)="startEdit(subject.id)"
+        >
+          {{ subject.value }}
+        </div>
+        <input
+          [hidden]="editId !== subject.id"
+          type="text"
+          nz-input
+          [(ngModel)]="subject.value"
+          (blur)="stopEdit()"
+        />
+        <!-- <p class="set-content">
+          ขออนุมัติงบประมาณจัดซื้อบัญชี Social Media Account
+          โปรเจคสํานักงานตํารวจแห่งชาติ
+        </p> -->
+      </div>
+    </div>
+    <div nz-row class="title-row3">
+      <div class="add-border-right" nz-col nzSpan="3">
+        <p class="set-topic">ATTN. :</p>
+      </div>
+      <div nz-col nzSpan="21">
+        <div nz-row>
+          <div style="" nz-col nzSpan="16">
+            <p class="set-content">เอมอร โชติยะปุตตะ</p>
+          </div>
+          <div nz-col nzSpan="8">
+            <div nz-row>
+              <div style="border-left: 1px solid" nz-col nzSpan="6">
+                <p class="set-topic">From :</p>
+              </div>
+              <div
+                style="border-left: 1px solid; text-align: center"
+                nz-col
+                nzSpan="18"
+              >
+                <div
+                  class="editable-cell"
+                  [hidden]="editId === from.id"
+                  (click)="startEdit(from.id)"
+                >
+                  {{ from.value }}
+                </div>
+                <input
+                  class="set-content"
+                  [hidden]="editId !== from.id"
+                  type="text"
+                  nz-input
+                  [(ngModel)]="from.value"
+                  (blur)="stopEdit()"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div nz-row class="title-row4">
+      <div class="add-border-right" nz-col nzSpan="3">
+        <p class="set-topic">CC. :</p>
+      </div>
+      <div nz-col nzSpan="21">
+        <p class="set-content">ชนะชัย ประมวลทรัพย์</p>
+      </div>
+    </div>
+    <div nz-row nz-row class="title-row5">
+      <div class="add-border-right" nz-col nzSpan="3">
+        <p class="set-topic">For:</p>
+      </div>
+      <div nz-col nzSpan="21">
+        <div
+          class="editable-cell"
+          [hidden]="editId === for.id"
+          (click)="startEdit(for.id)"
+        >
+          {{ for.value }} {{ for.date }}
+        </div>
+        <nz-select
+          class="set-content"
+          style="width: 280px; padding: none"
+          [hidden]="editId !== for.id"
+          [(ngModel)]="for.value"
+          (blur)="stopEdit()"
+          (ngModelChange)="onForChange($event)"
+        >
+          <nz-option
+            nzValue="เพื่อโปรดพิจรณาอนุมัติ"
+            nzLabel="เพื่อโปรดพิจรณาอนุมัติ"
+          ></nz-option>
+          <nz-option
+            nzValue="เพื่อโปรดทราบและพิจารณา"
+            nzLabel="เพื่อโปรดทราบและพิจารณา"
+          ></nz-option>
+          <nz-option
+            nzValue="เพื่อโปรดดําเนินการภายในวันที่"
+            nzLabel="เพื่อโปรดดําเนินการภายในวันที่"
+          ></nz-option>
+          <nz-option
+            nzValue="เพื่อโปรดทราบและพิจารณาภายในวันที่"
+            nzLabel="เพื่อโปรดทราบและพิจารณาภายในวันที่"
+          ></nz-option>
+        </nz-select>
+        <nz-date-picker
+          [hidden]="editId !== for.id"
+          *ngIf="isPickerVisible"
+          [(ngModel)]="for.date"
+          (ngModelChange)="onDateChange($event)"
+        ></nz-date-picker>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div nz-row class="content-row">
+      <div nz-col nzSpan="24">
+        <div
+          style="height: 420px"
+          class="editable-cell"
+          [hidden]="editId === content.id"
+          (click)="startEdit(content.id)"
+        >
+          <p style="word-break: normal">{{ content.value }}</p>
+        </div>
+        <textarea
+          rows="18"
+          [hidden]="editId !== content.id"
+          type="text"
+          nz-input
+          [(ngModel)]="content.value"
+          (blur)="stopEdit()"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div nz-row class="footer-row1 row-margin">
+      <div class="add-border-right" nz-col nzSpan="8">
+        <p class="footer-content">จึงเรียนมาเพื่อพิจารณาอนุมัติ</p>
+      </div>
+      <div nz-col nzSpan="8"></div>
+      <div nz-col nzSpan="8">
+        <p class="footer-content">ขอแสดงความนับถือ</p>
+      </div>
+    </div>
+
+    <div nz-row class="footer-row2 row-margin">
+      <div class="add-border-right" nz-col nzSpan="8">
+        <p class="footer-content"></p>
+      </div>
+      <div nz-col nzSpan="8"></div>
+      <div nz-col nzSpan="8">
+        <div
+          style="text-align: center;"
+          class="editable-cell"
+          [hidden]="editId === footerName.id"
+          (click)="startEdit(footerName.id)"
+        >
+          ({{ footerName.value }})
+        </div>
+        <input
+          [hidden]="editId !== footerName.id"
+          type="text"
+          nz-input
+          [(ngModel)]="footerName.value"
+          (blur)="stopEdit()"
+        />
+        <div
+          style="text-align: center;"
+          class="editable-cell"
+          [hidden]="editId === footerPosition.id"
+          (click)="startEdit(footerPosition.id)"
+        >
+          ตําแหน่ง {{ footerPosition.value }}
+        </div>
+        <input
+          [hidden]="editId !== footerPosition.id"
+          type="text"
+          nz-input
+          [(ngModel)]="footerPosition.value"
+          (blur)="stopEdit()"
+        />
+      </div>
+    </div>
+
+    <div nz-row class="footer-row3 row-margin">
+      <div class="add-border-right" nz-col nzSpan="8">
+        <p class="footer-content">ตรวจสอบโดย</p>
+      </div>
+      <div nz-col nzSpan="8"><p class="footer-content">ตรวจสอบโดย</p></div>
+      <div nz-col nzSpan="8">
+        <p class="footer-content">อนุมัติโดย</p>
+      </div>
+    </div>
+
+    <div nz-row class="footer-row4 row-margin">
+      <div class="add-border-right" nz-col nzSpan="8">
+        <p class="footer-content">(นาย ชนะชัย ประมวลทรัพย์)</p>
+        <p class="footer-content">ตําแหน่ง Media Manager</p>
+      </div>
+      <div nz-col nzSpan="8">
+        <p class="footer-content">นาง ดวงใจ ธูปทอง</p>
+      </div>
+      <div nz-col nzSpan="8">
+        <p class="footer-content">(คุณ เอมอร โชติยะปุตตะ)</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,9 @@
+<nz-switch style = "margin-bottom: 10px; " [ngModel]="profileSwitch" nzCheckedChildren="single-view" nzUnCheckedChildren="table-view" [nzControl]="true" (click)="clickSwitch()"></nz-switch>
+
+<div *ngIf="profileSwitch; else elseBlock">
+    <app-profile-single [data]="singleItem" [pageIndex]="pageIndex" [total]="total"></app-profile-single>
+</div>
+<ng-template #elseBlock>
+    <app-profile-table (data)="getSingleItem($event)"></app-profile-table> 
+</ng-template>
+

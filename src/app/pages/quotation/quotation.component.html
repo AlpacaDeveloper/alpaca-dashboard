@@ -1,0 +1,683 @@
+<button
+  nz-button
+  nzType="primary"
+  printSectionId="print"
+  [disabled]="printSwitch"
+  [useExistingCss]="true"
+  ngxPrint
+>
+  print
+</button>
+<button nz-button nzType="primary" (click)="submit()">บันทึกข้อมูล</button>
+<section id="print">
+  <div class="header">
+    <img src="../../../assets/img/alpacalogo1.png" alt="alpaca-logo" />
+    <p style="margin-top: 10px">
+      บริษัท อัลปากา มีเดีย แอนด์ เทคโนโลยี โซลูชั่นส์ จํากัด
+    </p>
+
+    <p>
+      เลขที่ 888 อาคารไอทาวเวอร์ ชั้น 15 ถนนวิภาวดีรังสิต แขวงจตุจักร
+      กรุงเทพมหานคร 10900
+    </p>
+    <p>Email: alpaca.mts@gmail.com</p>
+    <p style="margin-bottom: 10px; margin-left: 175px; padding-bottom: 5px">
+      เลขประจําตัวผู้เสียภาษีอากร 0105564014412(สํานักงานใหญ่)
+    </p>
+    <h5>ใบเสนอราคา/Quotation</h5>
+  </div>
+
+  <div class="title">
+    <div>
+      <div nz-row>
+        <div
+          class="set-content"
+          style="padding-left: 10px; border-top: 0"
+          nz-col
+          nzSpan="2"
+        >
+          <p>ที่อยู่</p>
+        </div>
+        <div style="border-bottom: none;" nz-col nzSpan="14">
+          <div
+            style="height: 20px;"
+            class="editable-cell"
+            [hidden]="editId === address1.id"
+            (click)="startEdit(address1.id)"
+          >
+            <p style="word-break: normal">{{ address1.value }}</p>
+          </div>
+          <textarea
+            style="padding: none; margin: none;"
+            rows="3"
+            [hidden]="editId !== address1.id"
+            type="text"
+            nz-input
+            [(ngModel)]="address1.value"
+            (blur)="stopEdit()"
+          ></textarea>
+        </div>
+        <div
+          class="set-topic"
+          style="border-left: 1px solid ;"
+          nz-col
+          nzSpan="4"
+        >
+          <p>เลขที่ใบเสนอราคา</p>
+        </div>
+        <div class="set-content" nz-col nzSpan="4">
+          <div
+            class="editable-cell"
+            style="height: 100%"
+            [hidden]="editId === dept.id"
+            (click)="startEdit(dept.id)"
+          >
+            <p class="set-topic">{{ qt }}</p>
+          </div>
+          <nz-select
+            [hidden]="editId !== dept.id"
+            [(ngModel)]="dept.value"
+            (blur)="stopEdit()"
+            (ngModelChange)="onDeptChange($event)"
+          >
+            <nz-option nzValue="Media" nzLabel="Media"></nz-option>
+            <nz-option nzValue="Technology" nzLabel="Technology"></nz-option>
+            <nz-option nzValue="Production" nzLabel="Production"></nz-option>
+            <nz-option nzValue="Management" nzLabel="Management"></nz-option>
+          </nz-select>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div nz-row>
+        <div style="border: 1px 0 0 1px solid!" nz-col nzSpan="2"></div>
+        <div style="border-bottom: none" nz-col nzSpan="14">
+          <!-- <div
+                    class="editable-cell"
+                    style="height: auto"
+                    [hidden]="editId === address2.id"
+                    (click)="startEdit(address2.id)"
+                  >
+                    <p class="set-topic">{{ address2.value }}</p>
+                  </div>
+                  <input [hidden]="editId !== address2.id" type="text" nz-input [(ngModel)]="address2.value" (blur)="stopEdit()" /> -->
+        </div>
+        <div class="set-topic" style="border-left: 1px solid" nz-col nzSpan="4">
+          <p>วัน/เดือน/ปี</p>
+        </div>
+        <div class="set-content" nz-col nzSpan="4">
+          <p style="padding-left: 10px;">{{ this.today | date: "dd/MM/yyyy" }}</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div nz-row>
+        <div nz-col nzSpan="2"></div>
+        <div nz-col nzSpan="14">
+          <!-- <div
+                    class="editable-cell"
+                    style="height: auto"
+                    [hidden]="editId === address3.id"
+                    (click)="startEdit(address3.id)"
+                  >
+                    <p class="set-topic">{{ address3.value }}</p>
+                  </div>
+                  <input [hidden]="editId !== address3.id" type="text" nz-input [(ngModel)]="address3.value" (blur)="stopEdit()" /> -->
+        </div>
+        <div style="border-left: 1px solid" class="set-topic" nz-col nzSpan="4">
+          <p>เงื่อนไขการชําระเงิน</p>
+        </div>
+        <div class="set-content" nz-col nzSpan="4">
+          <div
+            class="editable-cell"
+            style="height: 100%"
+            [hidden]="editId === condition.id"
+            (click)="startEdit(condition.id)"
+          >
+            <p class="set-condition">{{ condition.value }}</p>
+          </div>
+          <input
+            [hidden]="editId !== condition.id"
+            type="text"
+            nz-input
+            [(ngModel)]="condition.value"
+            (blur)="stopEdit()"
+          />
+        </div>
+      </div>
+    </div>
+    <div>
+      <div nz-row>
+        <div style="padding-left: 8px" nz-col nzSpan="6">
+          <p>เลขประจําตัวผู้เสียภาษีอากร</p>
+        </div>
+        <div nz-col nzSpan="10">
+          <div
+            class="editable-cell"
+            style="height: 100%"
+            [hidden]="editId === company_id.id"
+            (click)="startEdit(company_id.id)"
+          >
+            <p class="set-topic">{{ company_id.value }}</p>
+          </div>
+          <input
+            [hidden]="editId !== company_id.id"
+            type="text"
+            nz-input
+            [(ngModel)]="company_id.value"
+            (blur)="stopEdit()"
+          />
+        </div>
+        <div
+          style="border-left: 1px solid"
+          class="set-topic"
+          nz-col
+          nzSpan="8"
+        ></div>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div style="height: 22px">
+      <div nz-row>
+        <div
+          class="set-content-topic"
+          style="text-align: center"
+          nz-col
+          nzSpan="2"
+        >
+          <p>ลําดับ</p>
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid"
+          nz-col
+          nzSpan="12"
+        >
+          รายละเอียด
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid"
+          nz-col
+          nzSpan="2"
+        >
+          <p>จํานวน</p>
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid ;"
+          nz-col
+          nzSpan="2"
+        >
+          <p>หน่วย</p>
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid ;"
+          nz-col
+          nzSpan="3"
+        >
+          <p>ราคา/หน่วย</p>
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid ;"
+          nz-col
+          nzSpan="3"
+        >
+          <p>จํานวนเงิน</p>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let ep of emptyRow; index as index">
+      <div nz-row style="
+        border-top: 1px solid">
+        <div
+          class="set-content-topic"
+          style="text-align: center"
+          nz-col
+          nzSpan="2"
+        >
+          <p *ngIf="ep.desc; else elseBlock">{{ index + 1 }}</p>
+          <ng-template #elseBlock><p>&nbsp;</p></ng-template>
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid"
+          nz-col
+          nzSpan="12"
+        >
+          <div
+            class="editable-cell"
+            style="height: 100%"
+            [hidden]="editId === ep.id"
+            (click)="startEdit(ep.id)"
+          >
+            <p class="set-topic">{{ ep.desc }}</p>
+          </div>
+          <input
+            [hidden]="editId !== ep.id"
+            type="text"
+            nz-input
+            [(ngModel)]="ep.desc"
+            ((blur))="stopEdit()"
+          />
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid"
+          nz-col
+          nzSpan="2"
+        >
+          <div
+            class="editable-cell"
+            style="height: 100%"
+            [hidden]="editId === ep.id"
+            (click)="startEdit(ep.id)"
+          >
+            <p class="set-topic">{{ ep.amount }}</p>
+          </div>
+          <input
+            [hidden]="editId !== ep.id"
+            type="text"
+            nz-input
+            [(ngModel)]="ep.amount"
+            (blur)="stopEdit()"
+          />
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid"
+          nz-col
+          nzSpan="2"
+        >
+          <div
+            class="editable-cell"
+            style="height: 100%"
+            [hidden]="editId === ep.id"
+            (click)="startEdit(ep.id)"
+          >
+            <p class="set-topic">{{ ep.unit }}</p>
+          </div>
+          <input
+            [hidden]="editId !== ep.id"
+            type="text"
+            nz-input
+            [(ngModel)]="ep.unit"
+            (blur)="stopEdit()"
+          />
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid"
+          nz-col
+          nzSpan="3"
+        >
+          <div
+            class="editable-cell"
+            style="height: 100%"
+            [hidden]="editId === ep.id"
+            (click)="startEdit(ep.id)"
+          >
+            <p class="set-topic">{{ ep.ppu }}</p>
+          </div>
+          <input
+            [hidden]="editId !== ep.id"
+            type="text"
+            nz-input
+            [(ngModel)]="ep.ppu"
+            (blur)="stopEdit()"
+          />
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid"
+          nz-col
+          nzSpan="3"
+        >
+          <div
+            class="editable-cell"
+            style="height: 100%"
+            [hidden]="editId === ep.id"
+            (click)="startEdit(ep.id)"
+          >
+            <p class="set-topic">{{ ep.cost }}</p>
+          </div>
+          <input
+            [hidden]="editId !== ep.id"
+            type="number"
+            step="0.01"
+            nz-input
+            [(ngModel)]="ep.cost"
+            (ngModelChange)="onAmountChange($event)"
+            (blur)="stopEdit()"
+          />
+        </div>
+      </div>
+    </div>
+    <div>
+      <div nz-row style="border-top: 1px solid">
+        <div
+          class="set-content-topic"
+          style="text-align: center"
+          nz-col
+          nzSpan="2"
+        >
+          <p></p>
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid"
+          nz-col
+          nzSpan="12"
+        >
+          <p></p>
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid"
+          nz-col
+          nzSpan="2"
+        >
+          <p></p>
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid"
+          nz-col
+          nzSpan="2"
+        >
+          <p></p>
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid"
+          nz-col
+          nzSpan="3"
+        >
+          <p>รวมเงิน</p>
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid"
+          nz-col
+          nzSpan="3"
+        >
+          <div
+            class="editable-cell"
+            style="height: 100%"
+            [hidden]="editId === amount.id"
+            (click)="startEdit(amount.id)"
+          >
+            <p class="set-topic">{{ amount.value }}</p>
+          </div>
+          <input
+            [hidden]="editId !== amount.id"
+            type="text"
+            nz-input
+            [(ngModel)]="amount.value"
+            (blur)="stopEdit()"
+          />
+        </div>
+      </div>
+    </div>
+    <div>
+      <div nz-row style="border-top: 1px solid">
+        <div
+          class="set-content-topic"
+          style="text-align: center"
+          nz-col
+          nzSpan="2"
+        >
+          <p></p>
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid"
+          nz-col
+          nzSpan="12"
+        >
+          <p></p>
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid"
+          nz-col
+          nzSpan="2"
+        >
+          <p></p>
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid"
+          nz-col
+          nzSpan="2"
+        >
+          <p></p>
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid"
+          nz-col
+          nzSpan="3"
+        >
+          <p style="font-size: 11px">ภาษีมูลค่าเพิ่ม 7%</p>
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid"
+          nz-col
+          nzSpan="3"
+        >
+          <div
+            class="editable-cell"
+            style="height: 100%"
+            [hidden]="editId === vat.id"
+            (click)="startEdit(vat.id)"
+          >
+            <p class="set-topic">{{ vat.value }}</p>
+          </div>
+          <input
+            [hidden]="editId !== vat.id"
+            type="text"
+            nz-input
+            [(ngModel)]="vat.value"
+            (blur)="stopEdit()"
+          />
+        </div>
+      </div>
+    </div>
+    <div>
+      <div nz-row style="border-top: 1px solid">
+        <div
+          class="set-content-topic"
+          style="text-align: center"
+          nz-col
+          nzSpan="4"
+        >
+          <p>รวมเงิน(ตัวอักษร)</p>
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid"
+          nz-col
+          nzSpan="14"
+        >
+          <div
+            class="editable-cell"
+            style="height: 100%"
+            [hidden]="editId === total_text.id"
+            (click)="startEdit(total_text.id)"
+          >
+            <p class="set-topic">{{ total_text.value }}</p>
+          </div>
+          <input
+            [hidden]="editId !== total_text.id"
+            type="text"
+            nz-input
+            [(ngModel)]="total_text.value"
+            (blur)="stopEdit()"
+          />
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid"
+          nz-col
+          nzSpan="3"
+        >
+          <p>รวมราคาทั้งสิ้น</p>
+        </div>
+        <div
+          class="set-content-topic"
+          style="border-left: 1px solid"
+          nz-col
+          nzSpan="3"
+        >
+          <div
+            class="editable-cell"
+            style="height: 100%"
+            [hidden]="editId === total.id"
+            (click)="startEdit(total.id)"
+          >
+            <p class="set-topic">{{ total.value }}</p>
+          </div>
+          <input
+            [hidden]="editId !== total.id"
+            type="text"
+            nz-input
+            [(ngModel)]="total.value"
+            (blur)="stopEdit()"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>
+      <div nz-row style="padding-top: 15px">
+        <div
+          class="set-content-topic"
+          style="padding-left: 14px"
+          nz-col
+          nzSpan="2"
+        >
+          <p>หมายเหตุ</p>
+        </div>
+        <div
+          class="set-content-topic"
+          style="padding-left: 10px"
+          nz-col
+          nzSpan="22"
+        >
+          <p>
+            กรณีต้องการซื้อสินค้าหรือใช้บริการดังกล่าวข้างต้น
+            กรุณาลงชื่อด้านล่าง พร้อมประทับตราบริษัทและส่งกลับมา
+          </p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div nz-row style="padding-top: 15px">
+        <div
+          class="set-content-topic"
+          style="padding-left: 12px"
+          nz-col
+          nzSpan="24"
+        >
+          <p>ขอขอบพระคุณที่ท่านให้ความสนใจในบริการของเรา</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div nz-row style="padding-top: 15px">
+        <div
+          class="set-content-topic"
+          style="text-align: center"
+          nz-col
+          nzSpan="12"
+        >
+          <p>ออกโดย/Prepared By</p>
+        </div>
+        <div
+          class="set-content-topic"
+          style="text-align: center"
+          nz-col
+          nzSpan="12"
+        >
+          <p>ผู้มีอํานาจอนุมัติ/Authorized Signature</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div nz-row style="padding-top: 25px">
+        <div
+          class="set-content-topic"
+          style="text-align: center"
+          nz-col
+          nzSpan="12"
+        >
+          <p>_____________________________</p>
+        </div>
+        <div
+          class="set-content-topic"
+          style="text-align: center"
+          nz-col
+          nzSpan="12"
+        >
+          <p>__________________________________</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div nz-row>
+        <div nz-col nzSpan="4"></div>
+        <div class="space" style="text-align: center" nz-col nzSpan="4">
+          <span>(</span><span>)</span>
+        </div>
+        <div
+          class="set-content-topic"
+          style="text-align: center"
+          nz-col
+          nzSpan="4"
+        ></div>
+        <div
+          class="set-content-topic"
+          style="text-align: center"
+          nz-col
+          nzSpan="4"
+        ></div>
+        <div class="space" style="text-align: center" nz-col nzSpan="4">
+          <span>(</span><span>)</span>
+        </div>
+        <div
+          class="set-content-topic"
+          style="text-align: center"
+          nz-col
+          nzSpan="4"
+        ></div>
+      </div>
+    </div>
+    <div>
+      <div nz-row style="padding-top: 15px">
+        <div
+          class="set-content-topic"
+          style="text-align: center"
+          nz-col
+          nzSpan="12"
+        >
+          <p>วันที่_____/_____/_____</p>
+        </div>
+        <div
+          class="set-content-topic"
+          style="text-align: center"
+          nz-col
+          nzSpan="12"
+        >
+          <p>วันที่_____/_____/_____</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

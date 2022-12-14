@@ -1,0 +1,249 @@
+<div class="signup-section ptb-100">
+    <div class="container">
+        <div class="signup-form">
+            <h3>Alpaca User Register</h3>
+            <form [formGroup]="submitForm">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <h5 class="required">คํานําหน้า (นาย/นาง/นางสาว)</h5>
+                            <input
+                                type="text"
+                                id="title"
+                                class="form-control"
+                                placeholder=""
+                                formControlName="title"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <h5 class="required">ชื่อ</h5>
+                            <input
+                                type="text"
+                                id="fname"
+                                class="form-control"
+                                placeholder=""
+                                formControlName="name"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <h5 class="required">นามสกุล</h5>
+                            <input
+                                type="text"
+                                id="lname"
+                                class="form-control"
+                                placeholder=""
+                                formControlName="surname"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <h5>ฝ่าย</h5>
+                            <select
+                                id="department"
+                                name="department"
+                                formControlName="dept"
+                            >
+                                <option [value]=""></option>
+                                <option
+                                    *ngFor="let dept of departmentList"
+                                    [value]="dept.value"
+                                >
+                                    {{ dept.value }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-12">
+                        <div class="form-group">
+                            <h5>ระดับ</h5>
+                            <select
+                                id="department"
+                                name="department"
+                                formControlName="dept"
+                            >
+                                <option [value]=""></option>
+                                <option
+                                    *ngFor="let prior of priorityList"
+                                    [value]="prior.value"
+                                >
+                                    {{ prior.value }}
+                                </option>
+                            </select>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <h5>ตําแหน่ง</h5>
+                            <select
+                                id="position"
+                                name="position"
+                                formControlName="pos"
+                            >
+                                <option [value]=""></option>
+                                <option
+                                    *ngFor="let pos of userPositionList"
+                                    [value]="pos.value"
+                                >
+                                    {{ pos.value }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <h5 class="required">เลขบัตรประชาชน</h5>
+                            <input
+                                type="text"
+                                id="personal_id"
+                                class="form-control"
+                                placeholder=""
+                                formControlName="personal_id"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <h5 class="required">เบอร์โทรศัพท์</h5>
+                            <input
+                                type="text"
+                                id="personal_id"
+                                class="form-control"
+                                placeholder=""
+                                formControlName="tel"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <h5 class="required">วันที่เริ่มทํางาน (วว/ดด/ค.ศ.)</h5>
+                            <nz-date-picker
+                            id = start_date
+                            formControlName="start_date" 
+                            [(ngModel)]="date" 
+                            [nzFormat]="'dd/MM/yyyy'"
+                            (ngModelChange)="onDateChange($event)">
+                            </nz-date-picker>
+                            <!-- <input
+                                type="text"
+                                id="start_date"
+                                class="form-control"
+                                placeholder=""
+                                formControlName="start_date"
+                            /> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <h5 class="required">วันเกิด (วว/ดด/ค.ศ.)</h5>
+                            <nz-date-picker
+                            id = birthday
+                            formControlName="birthday" 
+                            [nzFormat]="'dd/MM/yyyy'"
+                            [(ngModel)]="birthday" 
+                            (ngModelChange)="onBirthdayChange($event)">
+                            </nz-date-picker>
+                                         
+                            <!-- <input
+                                type="text"
+                                id="birthday"
+                                class="form-control"
+                                placeholder=""
+                                formControlName="birthday"
+                            /> -->
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <h5 class="required">ที่อยู่</h5>
+                            <input
+                                type="text"
+                                id="address"
+                                class="form-control"
+                                placeholder=""
+                                formControlName="address"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <h5 class="required">โรคประจําตัว</h5>
+                            <input
+                                type="text"
+                                id="medical"
+                                class="form-control"
+                                placeholder=""
+                                formControlName="medical"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <h5 class="required">อัพโหลดรูปภาพ</h5>
+                        <nz-upload
+                                class="avatar-uploader"
+                                style="margin-top: 15px;"
+                                nzAction=""
+                                nzName="avatar"
+                                nzListType="picture-card"
+                                [nzShowUploadList]="false"
+                                [nzBeforeUpload]="beforeUpload"
+                                (nzChange)="handleChange($event)"
+                            >
+                            <ng-container *ngIf="!avatarUrl">
+                                <i class="upload-icon" nz-icon [nzType]="loading ? 'loading' : 'plus'"></i>
+                                <div class="ant-upload-text">Upload</div>
+                            </ng-container>
+                             <img *ngIf="avatarUrl" [src]="avatarUrl" style="width: 300px; height: 300px;" />
+                         </nz-upload>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-12">
+                        <div class="form-group">
+                            <h5>อัพโหลดรูปภาพ</h5>
+                            <nz-upload
+                            nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                            [nzHeaders]="{ authorization: 'authorization-text' }"
+                            (nzChange)="onFileSelected($event)"
+                          >
+                            <button nz-button>
+                              <i nz-icon nzType="upload"></i>
+                              Click to Upload
+                            </button>
+                          </nz-upload>
+                        </div>
+                    </div> -->
+                    
+                    <!-- <div class="col-lg-12">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="checkme">
+                            <label class="form-check-label" for="checkme">Keep Me Sign Up</label>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-12">
+                        <div class="send-btn">
+                            <button
+                                class="btn btn-primary"
+                                (click)="submit()"
+                                [disabled]="!submitForm.valid"
+                            >
+                                บันทึกข้อมูล
+                            </button>
+                            <!-- <a routerLink="/" class="default-btn">สมัครงาน</a> -->
+                        </div>
+    
+                        <br />
+                        <!-- <span>Already a registered user? <a routerLink="/log-in">Login!</a></span> -->
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+</div>

@@ -13,18 +13,18 @@ export class SingleViewComponent implements OnInit {
   @Input('pageIndex')pageIndex: number = 1
   @Input('total')total: number = 1;
   listOfData: JobApplication[] = [];
-  
+
 
   constructor(private services: DashboardService) { }
 
   ngOnInit(): void {
     this.getJobApplications()
-  
+
   }
 
   getJobApplications() {
     this.services.getJobApplications().subscribe((x: any) => {
-      this.listOfData = x; 
+      this.listOfData = x;
     });
   }
 
@@ -33,7 +33,7 @@ export class SingleViewComponent implements OnInit {
 
     this.data = this.listOfData[x - 1];
     this.pageIndex = x;
-  }) 
+  })
 
-  
+
 }

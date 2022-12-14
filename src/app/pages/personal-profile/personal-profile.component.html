@@ -1,0 +1,16 @@
+<h4 style="margin-bottom: 10px;">My Profile</h4>
+<img [src]="personalProfile?.url" style=" margin-bottom: 15px; width:250px; height: 250px;">
+<nz-descriptions nzTitle="" nzBordered>
+    <nz-descriptions-item nzTitle="คํานําหน้า" [nzSpan]="4" >{{ personalProfile?.title }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="ชื่อ" [nzSpan]="2" >{{ personalProfile?.name }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="นามสกุล"[nzSpan]="2">{{ personalProfile?.surname }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="รหัสพนักงาน" [nzSpan]="2" >{{ personalProfile?.account_id }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="เลขบัตรประชาชน" [nzSpan]="2" >{{ personalProfile?.personal_id }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="ฝ่าย" [nzSpan]="2">{{ personalProfile?.department }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="ตําแหน่ง" [nzSpan]="2">{{ personalProfile?.position }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="เบอร์โทรศัพท์" [nzSpan]="2">{{ personalProfile?.tel }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="วันที่เริ่มงาน" [nzSpan]="2">{{ personalProfile?.start_date }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="วันเกิด"[nzSpan]="4">{{ personalProfile?.birthday }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="ที่อยู่" [nzSpan]="6">{{ personalProfile?.address }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="โรคประจําตัว" [nzSpan]="2">{{ personalProfile?.medical }}</nz-descriptions-item>
+  </nz-descriptions>

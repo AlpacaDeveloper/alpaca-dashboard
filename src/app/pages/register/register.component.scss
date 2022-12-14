@@ -1,0 +1,136 @@
+$main-font-family: "Kanit", sans-serif;
+$optional-font-family: "Kanit", sans-serif;
+$main-color: #086ad8;
+$optional-color: #10dce8;
+$white-color: #ffffff;
+$black-color: #212121;
+$paragraph-color: #666666;
+$font-size: 15px;
+$transition: 0.5s;
+
+
+
+
+nz-date-picker {
+    margin: 0 8px 12px 0;
+  }
+
+:host ::ng-deep .avatar-uploader > .ant-upload {
+    width: 300px;
+    height: 300px;
+  }
+
+select {
+    width: 100%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+}
+
+.required {
+    &::after {
+        content: "*";
+        color: red;
+    }
+}
+
+
+.job-app-logo {
+    width: 30%;
+    margin: 0 35% 10% 35%;
+}
+
+.ptb-100 {
+    padding: {
+        top: 30px;
+        bottom: 100px;
+    }
+}
+
+.signup-section {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+.signup-form {
+    background: $white-color;
+    // box-shadow: 0 2px 48px 0 rgba(0, 0, 0, 0.08);
+    padding: 5px;
+    border-radius: 5px;
+    max-width: 600px;
+    margin: auto;
+
+    h3 {
+        font-size: 30px;
+        font-family: $main-font-family;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    h5 {
+        font-size: 20px;
+        font-family: $main-font-family;
+    }
+
+
+    form {
+        .form-group{ 
+            margin-bottom: 3%;
+        }
+        .form-control {
+            height: 50px;
+            border: 1px solid #eeeeee;
+            border-radius: 3px;
+            color: $black-color;
+            padding-left: 20px;
+            background: transparent;
+
+            &:focus {
+                border-color: $main-color;
+                outline: 0;
+                box-shadow: none;
+            }
+            &::placeholder {
+                color: #666666;
+            }
+        }
+        .form-check {
+            margin-top: 18px;
+
+            .form-check-label {
+                color: #666666;
+                position: relative;
+                top: -2px;
+            }
+        }
+        .send-btn {
+            margin: {
+                top: 20px;
+            }
+            .default-btn-one {
+                display: inline-block;
+                padding: 12px 30px;
+                background: $main-color;
+                border: 1px solid $main-color;
+                color: $white-color;
+                font-size: 16px;
+                font-weight: 400;
+                transition: 0.6s;
+                &:hover {
+                    text-decoration: none;
+                    background-color: $white-color;
+                    color: $main-color;
+                }
+            }
+        }
+        span {
+            display: block;
+            color: #666666;
+
+            a {
+                color: $main-color;
+            }
+        }
+    }
+}

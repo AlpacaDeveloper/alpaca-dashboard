@@ -4,11 +4,11 @@
     header('Access-Control-Allow-Methods: GET, PATCH, POST, OPTIONS');
     header('Content-Type: application/json');
     header('enctype: multipart/form-data');
-        
-    $username="alpaca_admin";//change username 
-    $password='R$lU9TEDEeQG'; //change password
+
+    $username="alpaca_admin";//change username
+    $password='Za9te#067'; //change password
     $host="localhost";
-    $db_name="alpaca_website"; //change databasename
+    $db_name="alpacathailand"; //change databasename
 
     $connect=mysqli_connect($host,$username,$password,$db_name);
 

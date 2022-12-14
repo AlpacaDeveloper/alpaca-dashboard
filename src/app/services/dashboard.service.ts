@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -69,6 +69,19 @@ export class DashboardService {
     return this.http.get(environment.APIURL + '/getTraineePosition.php');
   }
 
+  getUserPosition() {
+    return this.http.get(environment.APIURL + '/getUserPosition.php');
+  }
+
+  getDepartment() {
+    return this.http.get(environment.APIURL + '/getDepartment.php');
+  }
+
+  getPriority() {
+    return this.http.get(environment.APIURL + '/getPriority.php');
+  }
+
+
   insertTraineePosition(body: string) {
     // console.log(body);
     return this.http.post(
@@ -90,4 +103,77 @@ export class DashboardService {
       body
     );
   }
+
+  checkMemoID(date: string, dept: string) {
+    var params = new HttpParams().set('date', date).set('dept', dept);
+    return this.http.get(environment.APIURL + '/checkMemoID.php', { params });
+  }
+
+  checkUserID(){
+    return this.http.get(environment.APIURL + '/userID.php');
+  }
+  
+  checkQtID(date: string, dept: string){
+    var params = new HttpParams().set('date', date).set('dept', dept);
+    return this.http.get(environment.APIURL + '/checkQtID.php', { params });
+  }
+
+  insertMemo(body: any) {
+    return this.http.post(environment.APIURL + '/insertMemo.php', body);
+  }
+
+  insertQt(body: any) {
+    return this.http.post(environment.APIURL + '/insertQt.php', body);
+  }
+
+  getProfile() {
+    return this.http.get(environment.APIURL + '/getProfile.php');
+  }
+
+
+  insertUserPosition(body: string) {
+    return this.http.post(environment.APIURL + '/insertUserPosition.php', body);
+  }
+
+  deleteUserPosition(id: string) {
+    return this.http.post(environment.APIURL + '/deleteUserPosition.php', id);
+  }
+
+  insertDepartment(body: string) {
+    return this.http.post(environment.APIURL + '/insertDepartment.php', body);
+  }
+
+  deleteDepartment(id: string) {
+    return this.http.post(environment.APIURL + '/deleteDepartment.php', id);
+  }
+
+  registerUser(body: any) {
+    return this.http.post(environment.APIURL + '/registerUser.php', body);
+  }
+
+  insertUserID(body:any){
+    return this.http.post(environment.APIURL + '/insertUserID.php', body);
+  }
+
+  updatePriority(body: any) {
+    return this.http.post(
+      environment.APIURL + '/updatePriority.php',
+      body
+    );
+  }
+
+  updateRandomPassword(body:any) {
+    return this.http.post(
+      environment.APIURL + '/randomPassword.php',
+      body
+    );
+  }
+
+  deleteProfile(body:any) {
+    return this.http.post(
+      environment.APIURL + '/deleteProfile.php',
+      body
+    );
+  }
+
 }

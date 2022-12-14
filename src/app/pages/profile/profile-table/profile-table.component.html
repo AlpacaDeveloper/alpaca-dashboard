@@ -1,0 +1,224 @@
+<nz-table #basicTable [nzData]="listOfDisplayData" nzTableLayout="fixed" [nzScroll]="{ x: '1200px', y: '720px' }">
+    <!-- <thead>
+      <tr>
+        
+        <th nzWidth="100px">คํานําหน้า</th>
+        <th nzWidth="100px">ขื่อ</th>
+        <th nzWidth="150px">นามสกุล</th>
+        <th nzWidth="150px">รหัสพนักงาน</th>
+        <th nzWidth="150px">เลขบัตรประชาชน</th>
+        <th nzWidth="150px">ฝ่าย</th>
+        <th nzWidth="150px">ตําแหน่ง</th>
+        <th nzWidth="150px">เบอร์โทรศัพท์</th>
+        <th nzWidth="180px">วันที่เริ่มงาน</th>
+        <th nzWidth="150px">วันเกิด</th>
+        <th nzWidth="300px">ที่อยู่</th>
+        <th nzWidth="150px">โรคประจําตัว</th>
+      </tr>
+    </thead> -->
+    <thead>
+      <tr>
+        <th nzCustomFilter nzWidth="150px">
+          คํานําหน้า
+          <nz-filter-trigger [(nzVisible)]="visible[0]" [nzActive]="searchValue.title.length > 0"
+              [nzDropdownMenu]="title">
+              <i nz-icon nzType="search"></i>
+          </nz-filter-trigger>
+        </th>
+          <th nzCustomFilter nzWidth="150px">
+              ชื่อ
+              <nz-filter-trigger [(nzVisible)]="visible[1]" [nzActive]="searchValue.name.length > 0"
+                  [nzDropdownMenu]="name">
+                  <i nz-icon nzType="search"></i>
+              </nz-filter-trigger>
+          </th>
+          <th nzWidth="150px">นามสกุล
+              <nz-filter-trigger [(nzVisible)]="visible[2]" [nzActive]="searchValue.surname.length > 0"
+                  [nzDropdownMenu]="surname">
+                  <i nz-icon nzType="search"></i>
+              </nz-filter-trigger>
+          </th>
+          <th nzWidth="150px">รหัสพนักงาน
+              <nz-filter-trigger [(nzVisible)]="visible[3]" [nzActive]="searchValue.account_id.length > 0"
+                  [nzDropdownMenu]="account_id">
+                  <i nz-icon nzType="search"></i>
+              </nz-filter-trigger>
+          </th>
+          <th nzWidth="180px">เลขบัตรประชาชน
+              <nz-filter-trigger [(nzVisible)]="visible[4]" [nzActive]="searchValue.personal_id.length > 0"
+                  [nzDropdownMenu]="personal_Id">
+                  <i nz-icon nzType="search"></i>
+              </nz-filter-trigger>
+          </th>
+          <th nzWidth="150px">ฝ่าย
+              <nz-filter-trigger [(nzVisible)]="visible[5]" [nzActive]="searchValue.department.length > 0"
+                  [nzDropdownMenu]="department">
+                  <i nz-icon nzType="search"></i>
+              </nz-filter-trigger>
+          </th>
+          <th nzWidth="150px">ตําแหน่ง
+              <nz-filter-trigger [(nzVisible)]="visible[6]" [nzActive]="searchValue.position.length > 0"
+                  [nzDropdownMenu]="position">
+                  <i nz-icon nzType="search"></i>
+              </nz-filter-trigger>
+          </th>
+          <th nzWidth="150px">เบอร์โทรศัพท์
+              <nz-filter-trigger [(nzVisible)]="visible[7]" [nzActive]="searchValue.tel.length > 0"
+                  [nzDropdownMenu]="tel">
+                  <i nz-icon nzType="search"></i>
+              </nz-filter-trigger>
+          </th>
+          <th nzWidth="150px">วันที่เริ่มงาน
+              <nz-filter-trigger [(nzVisible)]="visible[8]" [nzActive]="searchValue.start_date.length > 0"
+                  [nzDropdownMenu]="start_date">
+                  <i nz-icon nzType="search"></i>
+              </nz-filter-trigger>
+          </th>
+          <th nzWidth="150px">วันเกิด
+              <nz-filter-trigger [(nzVisible)]="visible[9]" [nzActive]="searchValue.birthday.length > 0"
+                  [nzDropdownMenu]="birthday">
+                  <i nz-icon nzType="search"></i>
+              </nz-filter-trigger>
+          </th>
+          <th nzWidth="300px">ที่อยู่
+              <nz-filter-trigger [(nzVisible)]="visible[10]" [nzActive]="searchValue.address.length > 0"
+                  [nzDropdownMenu]="address">
+                  <i nz-icon nzType="search"></i>
+              </nz-filter-trigger>
+          </th>
+          <th nzWidth="150px">โรคประจําตัว
+              <nz-filter-trigger [(nzVisible)]="visible[11]" [nzActive]="searchValue.medical.length > 0"
+                  [nzDropdownMenu]="medical">
+                  <i nz-icon nzType="search"></i>
+              </nz-filter-trigger>
+          </th>
+      
+      </tr>
+  </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data" (click)="singleItem(data)">
+        <td>{{ data.title }}</td>
+        <td>{{ data.name }}</td>
+        <td>{{ data.surname }}</td>
+        <td>{{ data.account_id }}</td>
+        <td>{{ data.personal_id }}</td>
+        <td>{{ data.department }}</td>
+        <td>{{ data.position }}</td>
+        <td>{{ data.tel }}</td>
+        <td>{{ data.start_date }}</td>
+        <td>{{ data.birthday }}</td>
+        <td>{{ data.address }}</td>
+        <td>{{ data.medical }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+
+  <nz-dropdown-menu #title="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue.title" />
+            <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+            <button nz-button nzSize="small" (click)="reset(1)">Reset</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
+  <nz-dropdown-menu #name="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue.name" />
+            <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+            <button nz-button nzSize="small" (click)="reset(2)">Reset</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
+<nz-dropdown-menu #surname="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue.surname" />
+            <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+            <button nz-button nzSize="small" (click)="reset(3)">Reset</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
+<nz-dropdown-menu #account_id="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue.account_id" />
+            <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+            <button nz-button nzSize="small" (click)="reset(4)">Reset</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
+<nz-dropdown-menu #personal_Id="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue.personal_id" />
+            <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+            <button nz-button nzSize="small" (click)="reset(5)">Reset</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
+<nz-dropdown-menu #department="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue.department" />
+            <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+            <button nz-button nzSize="small" (click)="reset(6)">Reset</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
+<nz-dropdown-menu #position="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue.position" />
+            <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+            <button nz-button nzSize="small" (click)="reset(7)">Reset</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
+<nz-dropdown-menu #tel="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue.tel" />
+            <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+            <button nz-button nzSize="small" (click)="reset(8)">Reset</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
+<nz-dropdown-menu #start_date="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue.start_date" />
+            <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+            <button nz-button nzSize="small" (click)="reset(9)">Reset</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
+<nz-dropdown-menu #birthday="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue.birthday" />
+            <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+            <button nz-button nzSize="small" (click)="reset(10)">Reset</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
+<nz-dropdown-menu #address="nzDropdownMenu">
+  <div class="ant-table-filter-dropdown">
+      <div class="search-box">
+          <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue.address" />
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset(11)">Reset</button>
+      </div>
+  </div>
+</nz-dropdown-menu>
+<nz-dropdown-menu #medical="nzDropdownMenu">
+  <div class="ant-table-filter-dropdown">
+      <div class="search-box">
+          <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue.medical" />
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset(12)">Reset</button>
+      </div>
+  </div>
+</nz-dropdown-menu>

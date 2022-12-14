@@ -1,0 +1,132 @@
+.header,
+.title,
+.content,
+.footer {
+  width: 100%;
+
+  border: 1px solid;
+}
+
+button {
+    margin-bottom: 10px;
+}
+
+.header {
+    padding-bottom: 12px;
+    border: 1px 1px 0 1px solid;
+
+    p {
+        font-size: 11px;
+        margin-bottom: 3px;
+        padding-right: 15px;
+    }
+    img {
+        width: 180px;
+        float: left;
+        padding: {
+            top: 30px;
+            left: 45px;
+        }
+        margin-right: 25px;
+      }
+      z-index: -1;
+    // text-align: center;
+    h5 {
+        font-size: 12px;
+        font-weight: 500px;
+        margin: {
+            bottom: 20px;
+            left: 300px;
+        }
+        border: 1px solid;
+        border-radius: 6px;
+        display: inline;
+        padding: 5px 8px;
+    }
+}
+
+.title {
+    border-top: none;
+    p {
+        font-size: 11px;
+
+ 
+    }
+    .set-topic {
+        text-align: left;
+        margin: 0;
+        padding: 2px 0 0 10px;
+
+      }
+
+      .set-condition {
+        text-align: left;
+        margin: 0;
+        padding: 2px 3px 0 10px;
+
+      }
+
+
+    .set-content {
+        padding: 3px 3px;
+    }
+    .set-border-bottom {
+        border-bottom: none;
+    }
+}
+
+
+.content {
+    border-top: none;
+    p {
+        font-size: 12px;
+        margin-bottom: 3px;
+        padding-top: 5px;
+    }
+    .set-content-topic {
+        text-align: center;
+    }
+}
+
+.footer {
+    border-top: none;
+    p {
+        font-size: 12px;
+        margin-bottom: 3px;
+    }
+    .space {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.editable-cell {
+    position: relative;
+
+    cursor: pointer;
+    height: 100%;
+    background-color: #d3d3d3;
+    filter: blur(0);
+  }
+  
+  .editable-cell:hover {
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    filter: blur(0);
+  }
+
+  nz-select {
+    margin: 0 8px 10px 0;
+    width: 120px;
+  }
+
+  [nz-button] {
+    margin-right: 8px;
+    margin-bottom: 12px;
+  }
+  
+  @media print {
+    .editable-cell {
+      background-color: transparent;
+    }
+  }

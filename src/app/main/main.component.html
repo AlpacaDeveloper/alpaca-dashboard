@@ -14,12 +14,40 @@
       </a>
     </div>
     <ul
+        nz-menu
+        nzMode="inline"
+        nzTheme="dark"
+        [nzInlineCollapsed]="isCollapsed"
+      >
+      <li nz-menu-item nzMatchRouter>
+        <a routerLink="/personalprofile"
+          ><i nz-icon nzType="audit" nzTheme="outline"></i>
+          My Profile</a
+        >
+      </li>
+      </ul>
+    <ul
+        nz-menu
+        nzMode="inline"
+        nzTheme="dark"
+        [nzInlineCollapsed]="isCollapsed"
+      >
+      <li nz-menu-item nzMatchRouter *ngIf="level == 5">
+        <a routerLink="/superadmin"
+          ><i nz-icon nzType="setting" nzTheme="outline"></i>
+          Superadmin Dashboard</a
+        >
+      </li>
+      </ul>
+    
+    
+    <ul
       nz-menu
       nzTheme="dark"
       nzMode="inline"
       [nzInlineCollapsed]="isCollapsed"
     >
-      <li nz-submenu nzOpen nzTitle="Management" nzIcon="container">
+      <li nz-submenu nzOpen nzTitle="Job Applications" nzIcon="container" *ngIf="level >= 2" >
         <ul>
           <li nz-menu-item nzMatchRouter>
             <a routerLink="/dashboard"
@@ -36,6 +64,40 @@
             <a routerLink="/managejobapp"
               ><i nz-icon nzType="setting" nzTheme="outline"></i>
               จัดการแบบฟอร์ม</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Management" nzIcon="container"  >
+        <ul>
+          <!-- <li nz-menu-item nzMatchRouter>
+            <a routerLink="/formapplication"
+              ><i nz-icon nzType="audit" nzTheme="outline"></i>
+              Form Application</a
+            >
+          </li> -->
+          <!-- <li nz-menu-item nzMatchRouter *ngIf="level >=2">
+            <a routerLink="/register"
+              ><i nz-icon nzType="audit" nzTheme="outline"></i>
+              Register</a
+            >
+          </li> -->
+          <li nz-menu-item nzMatchRouter *ngIf="level >=2" >
+            <a routerLink="/profile"
+              ><i nz-icon nzType="audit" nzTheme="outline"></i>
+              Alpaca-Profile</a
+            >
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/memo"
+              ><i nz-icon nzType="audit" nzTheme="outline"></i>
+              Memo</a
+            >
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/quotation"
+              ><i nz-icon nzType="audit" nzTheme="outline"></i>
+             Quotation</a
             >
           </li>
         </ul>

@@ -11,6 +11,7 @@ export interface JobApplication {
     date : string;
     period : string;
     about : string;
+    salary : string;
     source : string;
     resume : string;
     port: string;

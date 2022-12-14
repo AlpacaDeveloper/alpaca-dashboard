@@ -1,0 +1,47 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="form">ฟอร์มที่ต้องการกรอก</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-select ngModel="form">
+            <nz-option nzValue="memo" nzLabel="Memorandum Department"></nz-option>
+          </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="subject" nzRequired>Subject</nz-form-label>
+        <nz-form-control [nzSm]="24" [nzXs]="24" >
+          <input nz-input id="subject" formControlName="subject" placeholder="" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="for">For</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <nz-select ngModel="for">
+              <nz-option nzValue="memo" nzLabel="เพื่อโปรดพิจรณาอนุมัติ"></nz-option>
+              <nz-option nzValue="memo" nzLabel="เพื่อโปรดทราบและพิจารณา"></nz-option>
+              <nz-option nzValue="memo" nzLabel="เพื่อโปรดดําเนินการภายในวันที่"></nz-option>
+              <nz-option nzValue="memo" nzLabel="เพื่อโปรดทราบและพิจารณาภายในวันที่"></nz-option>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="information" nzRequired>Information:</nz-form-label>
+        <nz-form-control [nzSm]="24" [nzXs]="24" >
+          <input nz-input id="informatiom" formControlName="information" placeholder="" />
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="upload" nzRequired>รูปภาพประกอบ:</nz-form-label>
+        <nz-form-control [nzSm]="24" [nzXs]="24" >
+          <input nz-input id="informatiom" formControlName="information" placeholder="" />
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item nz-row class="register-area">
+      <nz-form-control [nzSpan]="14" [nzOffset]="6">
+        <button nz-button nzType="primary">Register</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>

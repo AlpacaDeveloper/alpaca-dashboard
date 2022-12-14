@@ -1,4 +1,4 @@
-<nz-switch [ngModel]="viewSwitch" nzCheckedChildren="single-view" nzUnCheckedChildren="table-view" [nzControl]="true" (click)="clickSwitch()"></nz-switch>
+<nz-switch  style="margin-bottom: 10px;"  [ngModel]="viewSwitch" nzCheckedChildren="single-view" nzUnCheckedChildren="table-view" [nzControl]="true" (click)="clickSwitch()"></nz-switch>
 
 <div *ngIf="viewSwitch; else elseBlock">
     <app-single-view [data]="singleItem" [pageIndex]="pageIndex" [total]="total"></app-single-view>

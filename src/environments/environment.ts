@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  APIURL: 'http://admin.alpacathailand.com/api'
+  APIURL: 'https://admin.alpacathailand.com/api',
+  HOST: 'https://admin.alpacathailand.com/'
 };
 
 /*

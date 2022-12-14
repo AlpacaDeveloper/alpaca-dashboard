@@ -1,0 +1,230 @@
+
+<nz-table #basicTable [nzData]="listOfData" [nzScroll]="{ x: '1200px', y: '800px' }">
+    <thead>
+      <tr>
+        <th nzWidth="100px">ชื่อ</th>
+        <th nzWidth="150px">นามสกุล</th>
+        <th nzWidth="150px">username</th>
+        <th nzWidth="150px">password</th>
+        <th nzWidth="150px">รหัสพนักงาน</th>
+        <th nzWidth="150px">ฝ่าย</th>
+        <th nzWidth="150px">ตําแหน่ง</th>
+        <th nzWidth="180px">priority</th>
+        <th nzWidth="180px">เบอรโทรศัพท์</th>
+        <th nzWidth="180px">วันที่เริ่มงาน</th>
+        <th nzWidth="180px">วันเกิด</th>
+        <th nzWidth="180px">ที่อยู่</th>
+        <th nzWidth="180px">โรคประจําตัว</th>
+        <th nzWidth="260px">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td><div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          >
+            {{ data.name }}
+          </div>
+          <input
+            class="set-content"
+            [hidden]="editId !== data.id"
+            type="text"
+            nz-input
+            [(ngModel)]="data.name"
+            (blur)="stopEdit()"
+          /></td>
+        <td><div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          >
+            {{ data.surname }}
+          </div>
+          <input
+            class="set-content"
+            [hidden]="editId !== data.id"
+            type="text"
+            nz-input
+            [(ngModel)]="data.surname"
+            (blur)="stopEdit()"
+          /></td>
+        <td> <div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          >
+            {{ data.username }}
+          </div>
+          <input
+            class="set-content"
+            [hidden]="editId !== data.id"
+            type="text"
+            nz-input
+            [(ngModel)]="data.username"
+            (blur)="stopEdit()"
+          /></td>
+          <td> <div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          >
+            {{ data.password }}
+          </div>
+          <input
+            class="set-content"
+            [hidden]="editId !== data.id"
+            type="text"
+            nz-input
+            [(ngModel)]="data.password"
+            (blur)="stopEdit()"
+          /></td>
+        <td>{{ data.account_id }}</td>
+        <td><div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          >
+            {{ data.department }}
+          </div>
+          <nz-select 
+            class="set-content"
+            style="width: 120px; padding: none"
+            [hidden]="editId !== data.id"
+            [(ngModel)]="data.department"
+            (blur)="stopEdit()" 
+          >
+            <nz-option *ngFor="let dept of listOfDepartment"
+              nzValue= {{dept.value}}
+              nzLabel={{dept.value}}
+            ></nz-option>
+          </nz-select></td>
+        <td>
+            <div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          >
+            {{ data.position }}
+          </div>
+          <nz-select 
+            class="set-content"
+            style="width: 120px; padding: none"
+            [hidden]="editId !== data.id"
+            [(ngModel)]="data.position"
+            (blur)="stopEdit()" 
+          >
+            <nz-option *ngFor="let pos of listOfPosition"
+              nzValue= {{pos.value}}
+              nzLabel={{pos.value}}
+            ></nz-option>
+          </nz-select>
+        </td>
+        <td><div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          >
+            {{ data.priority }}
+          </div>
+          <nz-select 
+            class="set-content"
+            style="width: 140px; padding: none"
+            [hidden]="editId !== data.id"
+            [(ngModel)]="data.priority"
+            (blur)="stopEdit()" 
+          >
+            <nz-option *ngFor="let prior of listOfPriority"
+              nzValue= {{prior.value}}
+              nzLabel={{prior.value}}
+            ></nz-option>
+          </nz-select></td>
+          <td><div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          >
+            {{ data.tel }}
+          </div>
+          <input
+            class="set-content"
+            [hidden]="editId !== data.id"
+            type="text"
+            nz-input
+            [(ngModel)]="data.tel"
+            (blur)="stopEdit()"
+          /></td>
+          <td><div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          >
+            {{ data.start_date }}
+          </div>
+          <input
+            class="set-content"
+            [hidden]="editId !== data.id"
+            type="text"
+            nz-input
+            [(ngModel)]="data.start_date"
+            (blur)="stopEdit()"
+          /></td>
+          <td><div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          >
+            {{ data.birthday }}
+          </div>
+          <input
+            class="set-content"
+            [hidden]="editId !== data.id"
+            type="text"
+            nz-input
+            [(ngModel)]="data.birthday"
+            (blur)="stopEdit()"
+          /></td>
+          <td><div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          >
+            {{ data.address }}
+          </div>
+          <input
+            class="set-content"
+            [hidden]="editId !== data.id"
+            type="text"
+            nz-input
+            [(ngModel)]="data.address"
+            (blur)="stopEdit()"
+          /></td>
+          <td><div
+            class="editable-cell"
+            [hidden]="editId === data.id"
+            (click)="startEdit(data.id)"
+          >
+            {{ data.medical }}
+          </div>
+          <input
+            class="set-content"
+            [hidden]="editId !== data.id"
+            type="text"
+            nz-input
+            [(ngModel)]="data.medical"
+            (blur)="stopEdit()"
+          /></td>
+          <td>
+              <a style= "margin-right : 10px ; color: #3A9BDC;"(click)="updatePriority(data)">บันทึก</a>
+              <a 
+              nz-popconfirm
+              nzPopconfirmTitle="กรุณายืนยันเพื่อลบข้อมูล?"
+              nzPopconfirmPlacement="bottom"
+              (nzOnConfirm)="deleteProfile(data.id)"
+              style= "margin-right : 10px ; color: #FF4500;">ลบข้อมูล</a>
+              <a *ngIf="!data.password"style= "color: #3A9BDC;"(click)="randomPassword(data)">อนุมัติ</a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>

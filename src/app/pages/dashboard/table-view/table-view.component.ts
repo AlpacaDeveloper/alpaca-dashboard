@@ -9,10 +9,16 @@ import { JobApplication } from 'src/interface/jobApplication.interface';
 })
 export class TableViewComponent implements OnInit {
   @Output() data = new EventEmitter<any>();
+  searchValue = '';
+  visible = false;
 
   listOfData: JobApplication[] = [];
+  listOfDataDisplay = [...this.listOfData]
 
-  constructor(private services: DashboardService) {}
+  checkOptionsOne: any = [
+  ];
+
+  constructor(private services: DashboardService) { }
 
   ngOnInit(): void {
     this.getJobApplications();
@@ -23,6 +29,20 @@ export class TableViewComponent implements OnInit {
     this.services.getJobApplications().subscribe((x: any) => {
       console.log(x)
       this.listOfData = x;
+      this.listOfDataDisplay = [...this.listOfData]
+
+      var temp = [...new Set(x.map((y: any) => { return y.pos }))]
+
+      this.checkOptionsOne = temp.map((s: any) => {
+        return {
+          label: s,
+          value: s,
+          checked: true
+        }
+      })
+
+
+
       var data = {
         job: x[0],
         switch: false,
@@ -44,4 +64,24 @@ export class TableViewComponent implements OnInit {
     };
     this.data.emit(data);
   }
+
+  search(): void {
+    this.visible = false;
+    this.listOfDataDisplay = this.listOfData.filter(
+      (item: JobApplication) => item.pos.toLowerCase().indexOf(this.searchValue) !== -1)
+  }
+
+  reset(): void {
+    this.searchValue = '';
+    this.search();
+  }
+
+  log(value: any): void {
+   var filter: string[] = value.filter((x: any) => { return x.checked }).map((x: any) => x.value)
+
+   this.listOfDataDisplay = this.listOfData.filter((x: any) => {
+    return filter.includes(x.pos)
+   })
+  }
+
 }
